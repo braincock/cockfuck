@@ -34,17 +34,27 @@ cockfuck, this array has 65536 elements. The symbols used to form
 commands for moving the data pointer or modifying the data are glans
 (`>` or `D`), shafts (`=`), and balls (`8` or `B`).
 
-**`>` (tapered glans)** Increment the data pointer or the corresponding byte.
+#### `>` ####
 
-**`D` (broad glans)** Decrement the data pointer or the corresponding byte.
+**Tapered glans.** Increment the data pointer or the corresponding byte.
 
-**`=` (shaft)** The length of a cock --- the number of shafts connecting the
+#### `D` ####
+
+**Broad glans.** Decrement the data pointer or the corresponding byte.
+
+#### `=` ####
+
+**Shaft.** The length of a cock --- the number of shafts connecting the
 glans and balls --- indicates the number of times to increment or
 decrement the target of the operation.
 
-**`8` (hanging balls)** Dictate that we operate on the data pointer.
+#### `8` ####
 
-**`B` (cupped balls)** Dictate that we operate on a byte.
+**Hanging balls** dictate that we operate on the data pointer.
+
+#### `B` ####
+
+**Cupped balls** dictate that we operate on a byte.
 
 Given these definitions, it is trivial to show that cockfuck sports
 four basic (intact, unit) cocks:
