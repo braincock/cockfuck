@@ -115,11 +115,6 @@ while (length($program) > 0) {
     }
 }
 
-for (my $i=0; $i<=$#commands; $i++) {
-    my ($command, $number) = @{$commands[$i]};
-    print "$i : $command $number\n";
-}
-
 if ($#lastcock >= 0) {
     print STDERR "Error: unbalanced chopcocks! Program is invalid.\n";
     exit(1);
