@@ -45,7 +45,7 @@ while (length($program) > 0) {
         print '-' x length($1);
         $program = substr($program,length($1));
     } elsif ($program =~ /^\[/) {
-        print '8=`,';
+        print '8=,`';
         $program = substr($program,1);
     } elsif ($program =~ /^]/) {
         print '`,=>';

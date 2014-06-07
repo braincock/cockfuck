@@ -44,7 +44,7 @@ while (length($program) > 0) {
     } elsif ($program =~ /^(~+)/) {
         print '.' x length($1);
         $program = substr($program,length($1));
-    } elsif ($program =~ /^(8=+`,)/) {
+    } elsif ($program =~ /^(8=+,`)/) {
         print '[';
         $program = substr($program,length($1));
     } elsif ($program =~ /^(`,=+>)/) {

@@ -60,8 +60,8 @@ my $jmpBack = 8;
 # -            accept one byte of input (sound)
 # ~            produce one byte of output (semen)
 #
-# 8=`,         if current data is zero, jump forward to the matching chopped cock (length of cock does not matter)
-# `,=>         if the current data is zero, jump backward to the matching chopped cock (length of cock does not matter)
+# 8=,`         if current data is zero, jump forward to the matching chopped cock (length of cock does not matter)
+# `,=>         if the current data is nonzero, jump backward to the matching chopped cock (length of cock does not matter)
 #
 # a valid cockfuck program contains only the above characters, so we get rid of everything else:
 
@@ -93,7 +93,7 @@ while (length($program) > 0) {
         addCommand($takeIn,length($1),length($1));
     } elsif ($program =~ /^(~+)/) {
         addCommand($putOut,length($1),length($1));
-    } elsif ($program =~ /^(8=+`,)/) {
+    } elsif ($program =~ /^(8=+,`)/) {
         addCommand($jmpFwd,length($1));
         push(@lastcock,$#commands);
     } elsif ($program =~ /^(`,=+>)/) {
