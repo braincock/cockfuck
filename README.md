@@ -119,7 +119,7 @@ cockfucker will add a trivial `8=>` at the start of the source.
 A cockfuck program's instruction pointer moves from left to right,
 reading cocks, jizz, and sounds as it goes. This basic flow can be
 modified using the severed and bleeding members known as chopticocks
-(``8=,``` and ```,=>`` being their constituent parts).
+(`` 8=,` `` and `` `,=> `` being their constituent parts).
 
 #### `` 8=,` `` ####
 
