@@ -29,10 +29,10 @@ ignored; indeed, the cockfuck interpreter strips them from source.
 
 ### cockfuck Syntax, Part I: Working the Shafts ###
 
-As in brainfuck, cockfuck reads to and writes from an array of 65536
-bytes. The symbols used to form commands for moving the data pointer
-or modifying the data are glans (`>` or `D`), shafts (`=`), and balls
-(`8` or `B`).
+As in brainfuck, cockfuck reads to and writes from an array of bytes. In
+cockfuck, this array has 65536 elements. The symbols used to form
+commands for moving the data pointer or modifying the data are glans
+(`>` or `D`), shafts (`=`), and balls (`8` or `B`).
 
 **`>` (tapered glans)** Increment the data pointer or the corresponding byte.
 
