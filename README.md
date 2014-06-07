@@ -54,7 +54,7 @@ decrement the target of the operation.
 
 #### `B` ####
 
-**Cupped balls** dictate that we operate on a byte.
+**Cupped balls** Dictate that we operate on a byte.
 
 Given these definitions, it is trivial to show that cockfuck sports
 four basic (intact, unit) cocks:
@@ -66,7 +66,7 @@ four basic (intact, unit) cocks:
 
 In brainfuck, repeated operations of the same type are written as
 strings of identical symbols. For example, `+++` increments the byte
-under the data pointer three times. While repeated unit-cocks can
+under the data pointer three times. While repeated unit cocks can
 certainly be used for this purpose, style and physiology dictate
 instead that a single cock engorge to the length necessary to effect
 the desired result. That is to say, brainfuck `+++` should be written
@@ -90,13 +90,13 @@ cockfuck's I/O symbols are jizz (`~`) and
 
 #### `~` ####
 
-Jizz: Output the byte under the data pointer, directly equivalent to the
+**Jizz.** Output the byte under the data pointer, directly equivalent to the
 `.` operation in brainfuck. The length of a rope of jizz indicates the
 number of times the byte should be output.
 
 #### `-` ####
 
-Sound: Accept a byte of input and store it under the data pointer,
+**Sound.** Accept a byte of input and store it under the data pointer,
 directly equivalent to the `,` operation in brainfuck. Sounds can be
 extended to arbitrary length --- like their real-life equivalents ---
 indicating that multiple bytes should be accepted, but only the last
@@ -121,16 +121,16 @@ reading cocks, jizz, and sounds as it goes. This basic flow can be
 modified using the severed and bleeding members known as chopticocks
 (``8=,``` and ```,=>`` being their constituent parts).
 
-#### ``8=,``` ####
+#### `` 8=,` `` ####
 
-Choptiballs: If the byte under the data pointer is zero, move the
+**Choptiballs.** If the byte under the data pointer is zero, move the
 instruction pointer to the command after the matching choptiglans;
 otherwise, move the instruction pointer to the next command. Directly
 equivalent to brainfuck [.
 
-#### ```,=>`` ####
+#### `` `,=> `` ####
 
-Choptiglans. If the byte under the data pointer is nonzero, move the
+**Choptiglans.** If the byte under the data pointer is nonzero, move the
 instruction pointer to the command after the matching choptiballs;
 otherwise, move the instruction pointer to the next command. Directly
 equivalent to brainfuck ].
