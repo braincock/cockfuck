@@ -49,7 +49,7 @@ my $jmpBack = 8;
 #
 # a brainfuck implementation with ascii cocks
 #
-# in all of the below, "length of cock" refers to the number of equal signs. The penis and glans are irrelevant.
+# in all of the below, "length of cock" refers to the number of unit shafts (=). The penis and glans are irrelevant.
 #
 # 8=====>      increment data pointer by length of cock
 # 8=====D      decrement data pointer by length of cock
@@ -58,10 +58,10 @@ my $jmpBack = 8;
 # B=====D      decrease the byte at the data pointer by length of cock
 #
 # -            accept one byte of input (sound)
-# ~            produce one byte of output (semen)
+# ~            produce one byte of output (jizz)
 #
-# 8=,`         if current data is zero, jump forward to the matching chopped cock (length of cock does not matter)
-# `,=>         if the current data is nonzero, jump backward to the matching chopped cock (length of cock does not matter)
+# 8=,`         if current data is zero, jump forward to matching choptiglans (length of cock does not matter)
+# `,=>         if the current data is nonzero, jump backward to matching choptiballs (length of cock does not matter)
 #
 # a valid cockfuck program contains only the above characters, so we get rid of everything else:
 
@@ -99,7 +99,7 @@ while (length($program) > 0) {
     } elsif ($program =~ /^(`,=+>)/) {
         my $lstck = pop(@lastcock);
         unless (defined($lstck)) {
-            print STDERR "Error: unbalanced chopcocks! Program is invalid.\n";
+            print STDERR "Error: unbalanced chopticock! Program is invalid.\n";
             exit(-1);
         } else {
             $program = substr($program, length($1));
@@ -116,7 +116,7 @@ while (length($program) > 0) {
 }
 
 if ($#lastcock >= 0) {
-    print STDERR "Error: unbalanced chopcocks! Program is invalid.\n";
+    print STDERR "Error: unbalanced chopticock! Program is invalid.\n";
     exit(1);
 }
 undef @lastcock;
@@ -138,10 +138,10 @@ while ($cmd <= $#commands) {
         $array[$pointer] %= 256;
     } elsif ($command == $ptrInc) {
         $pointer += $number;
-        $pointer %= 32768;
+        $pointer %= 65536;
     } elsif ($command == $ptrDec) {
         $pointer -= $number;
-        $pointer %= 32768;
+        $pointer %= 65536;
     } elsif ($command == $takeIn) {
         my $tmpvar;
         read(STDIN, $tmpvar, $number);
