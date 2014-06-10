@@ -2,13 +2,15 @@
 
 cockfuck is a variation on the famous esoteric programming language [brainfuck](http://esolangs.org/wiki/brainfuck), a Turing tarpit consisting of eight (rather nondescript) symbols. cockfuck, by contrast, is a Turing comebucket that uses nine basic symbols to form an infinite semantic space of ASCII cocks --- some intact, some severed, some sounded, some effusively pleasured.
 
-The cockfuck distribution consists of this language specification and three Perl scripts:
+The cockfuck distribution consists of this README, three interpreter implementations, build infrastructure, and a test program:
 
 1. `cockfuck.pl`: A cockfuck interpreter in perl.
 2. `cockfuck.rs`: A cockfuck interpreter in [Rust](http://rust-lang.org). About two orders of magnitude faster than the perl interpreter when compiled with `-O`.
 3. `cockfuck.cpp`, `cockfuck.hpp`: A cockfuck interpreter in C++, about 40% faster than the Rust interpreter when compiled with Clang -O3.
-4. `brain2cock.pl`: The brainfuck-to-cockfuck translator.
-5. `cock2brain.pl`: The cockfuck-to-brainfuck translator.
+4. `brain2cock.pl`: brainfuck-to-cockfuck translator.
+5. `cock2brain.pl`: cockfuck-to-brainfuck translator.
+6. `Makefile`: Makefile for building and benchmarking the Rust and C++ interpreters.
+7. `collatz.cf`: A program that computes the number of steps to reach 0 or 1 following the [Collatz sequence](http://en.wikipedia.org/wiki/Collatz_conjecture). Original implementation in Brainfuck by [Daniel B. Cristofani](http://www.hevanet.com/cristofd/brainfuck/collatz.b).
 
 The interpreter reads cockfuck source from a file and executes it, taking input either from stdin or as specified by redirection. The translators read brainfuck or cockfuck source from a file, as appropriate, and print the translation to stdout; all tests to date indicate that the interconversion is (ahem) idempotent.
 
