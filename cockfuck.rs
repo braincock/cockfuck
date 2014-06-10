@@ -201,6 +201,8 @@ fn main() {
         fail!("unbalanced chopticock! program is invalid");
     }
 
+    let mut sIn = stdio::stdin_raw();
+    let mut sOut = stdio::stdout();
     loop {
         let s = pState.cmds.get(pState.cPtr);
         match s {
@@ -210,13 +212,11 @@ fn main() {
             &PtrInc(p)  => pState.dPtr += p,
             &PtrDec(p)  => pState.dPtr -= p,
             &TakeIn(n)  => pState.array[pState.dPtr as uint] =
-                            match stdio::stdin().read_exact(n) {
+                            match sIn.read_exact(n) {
                                 Ok(v) => *v.get(n-1) as u8,
                                 Err(_)=> 0
                             },
-            &PutOut(n)  =>  for _ in range(0, n) {
-                                print!("{}",pState.array[pState.dPtr as uint] as char)
-                            },
+            &PutOut(n)  => sOut.write_str( String::from_char(n, pState.array[pState.dPtr as uint] as char).as_slice() ).unwrap_or(()),
             &JumpFwd(n) => if pState.array[pState.dPtr as uint] == 0 { pState.cPtr = n },
             &JumpBack(n)=> if pState.array[pState.dPtr as uint] != 0 { pState.cPtr = n }
         };

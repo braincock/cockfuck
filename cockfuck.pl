@@ -144,10 +144,10 @@ while ($cmd <= $#commands) {
         $pointer %= 65536;
     } elsif ($command == $takeIn) {
         my $tmpvar;
-        read(STDIN, $tmpvar, $number);
+        sysread(STDIN, $tmpvar, $number);
         $array[$pointer] = ord(substr($tmpvar, $number - 1));
     } elsif ($command == $putOut) {
-        print chr($array[$pointer]) x $number;
+        syswrite(STDOUT,chr($array[$pointer]) x $number);
     } elsif ($command == $jmpFwd) {
         if ($array[$pointer] == 0) {
             $cmd = $number;
