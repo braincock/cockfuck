@@ -17,6 +17,16 @@
  * cockfuck.rs - cockfuck interpreter in rust
  */
 
+//
+// NOTE: this program uses C++11 constructs.
+// You'll need gcc >= 4.7 or Clang >= 3.2ish
+// and to give the -std=c++11 flag to the
+// compiler!
+//
+// I compile with
+// clang++ -m64 -pedantic -pedantic-errors -std=c++1y -Werror -Wall -Wextra -Wshadow -Wpointer-arith -Wcast-qual -Wformat=2 -O3 cockfuck.cpp -o cockfuck
+//
+
 #include "cockfuck.hpp"
 
 void add_cmd(ParseState &p, ProgStep &&t, bool force) {
