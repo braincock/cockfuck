@@ -6,8 +6,9 @@ The cockfuck distribution consists of this language specification and three Perl
 
 1. `cockfuck.pl`: A cockfuck interpreter in perl.
 2. `cockfuck.rs`: A cockfuck interpreter in [Rust](http://rust-lang.org). About two orders of magnitude faster than the perl interpreter when compiled with `-O`.
-3. `brain2cock.pl`: The brainfuck-to-cockfuck translator.
-4. `cock2brain.pl`: The cockfuck-to-brainfuck translator.
+3. `cockfuck.cpp`, `cockfuck.hpp`: A cockfuck interpreter in C++, about 40% faster than the Rust interpreter when compiled with Clang -O3.
+4. `brain2cock.pl`: The brainfuck-to-cockfuck translator.
+5. `cock2brain.pl`: The cockfuck-to-brainfuck translator.
 
 The interpreter reads cockfuck source from a file and executes it, taking input either from stdin or as specified by redirection. The translators read brainfuck or cockfuck source from a file, as appropriate, and print the translation to stdout; all tests to date indicate that the interconversion is (ahem) idempotent.
 
