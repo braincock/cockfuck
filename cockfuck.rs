@@ -1,5 +1,22 @@
+/*
+ *   DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+ *            Version 2, December 2004 
+ *
+ * Copyright (C) 2004 Sam Hocevar <sam@hocevar.net> 
+ *
+ * Everyone is permitted to copy and distribute verbatim or modified 
+ * copies of this license document, and changing it is allowed as long 
+ * as the name is changed. 
+ *
+ *            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+ *   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+ *
+ *  0. You just DO WHAT THE FUCK YOU WANT TO.
+ *
+ *
+ * cockfuck.rs - cockfuck interpreter in rust
+ */
 
-//use std::format::{Formatter, Result};
 use std::os;
 use std::io::{stdio, File, SeekSet, SeekCur};
 
@@ -44,7 +61,7 @@ fn parse_set_at(p : &mut ParseInfo) {
     p.at = match p.f.tell() {
         Err(e) => fail!("Tell failed: {}",e),
         Ok(t) => t as i64
-    };
+    }
 }
 
 fn parse_back_up(p : &mut ParseInfo) {
@@ -68,7 +85,7 @@ fn parse_infile(p : &mut ParseInfo) {
                 '`' => parse_cglans(p),
                 _   => parse_err(p)
             }
-        };
+        }
     }
 }
 
