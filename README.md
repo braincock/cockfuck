@@ -5,7 +5,7 @@ cockfuck is a variation on the famous esoteric programming language [brainfuck](
 The cockfuck distribution consists of this language specification and three Perl scripts:
 
 1. `cockfuck.pl`: A cockfuck interpreter in perl.
-2. `cockfuck.rs`: A cockfuck interpreter in [Rust](http://rust-lang.org).
+2. `cockfuck.rs`: A cockfuck interpreter in [Rust](http://rust-lang.org). About two orders of magnitude faster than the perl interpreter when compiled with `-O`.
 3. `brain2cock.pl`: The brainfuck-to-cockfuck translator.
 4. `cock2brain.pl`: The cockfuck-to-brainfuck translator.
 
