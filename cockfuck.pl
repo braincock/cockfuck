@@ -65,7 +65,7 @@ my $jmpBack = 8;
 #
 # a valid cockfuck program contains only the above characters, so we get rid of everything else:
 
-$program =~ s/[^8=>DB\-~'`,]//gs;
+$program =~ s/[^8=>DB\-~`,]//gs;
 
 # add a command and remove it from the front of the program
 sub addCommand {
