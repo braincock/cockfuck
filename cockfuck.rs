@@ -20,14 +20,6 @@
 use std::os;
 use std::io::{stdio, File, SeekSet, SeekCur};
 
-// state of the program
-struct ProgramState {
-    dPtr : u16,
-    cPtr : uint,
-    array : [u8, ..65536],
-    cmds : Vec<StepType>
-}
-
 #[deriving(Clone, Show)]
 enum StepType {
     DataInc(u8),
@@ -46,7 +38,7 @@ struct ParseInfo {
     f : File,
     at : i64,
     lcStack : Vec<uint>,
-    state : Box<ProgramState>
+    cmds : Vec<StepType>
 }
 
 fn parse_err(p : &mut ParseInfo) {
@@ -103,7 +95,7 @@ fn add_cmd(p : &mut ParseInfo, t : StepType, n : uint) {
     if n == 0 {
         parse_err(p);
     } else {
-        p.state.cmds.push(t);
+        p.cmds.push(t);
         parse_set_at(p);
     }
 }
@@ -115,7 +107,7 @@ fn parse_hanging(p : &mut ParseInfo, n : uint) {
             '=' => parse_hanging(p, n+1),
             '>' => add_cmd(p, PtrInc(n as u16), n),
             'D' => add_cmd(p, PtrDec(n as u16), n),
-            ',' => { p.lcStack.push(p.state.cmds.len()); add_cmd(p, JumpFwd(n), 1); },
+            ',' => { p.lcStack.push(p.cmds.len()); add_cmd(p, JumpFwd(n), 1); },
             '`' | '~' | '-' | '8' | 'B' => parse_err(p),
             _   => parse_hanging(p,n)
         }
@@ -140,7 +132,7 @@ fn parse_sound(p : &mut ParseInfo, n : uint) {
         Err(_) => return,
         Ok(b) => match b as char {
             '-' => parse_sound(p, n+1),
-            _   => { p.state.cmds.push(TakeIn(n)); parse_back_up(p); }
+            _   => { p.cmds.push(TakeIn(n)); parse_back_up(p); }
         }
     }
 }
@@ -150,7 +142,7 @@ fn parse_jizz(p : &mut ParseInfo, n : uint) {
         Err(_) => return,
         Ok(b) => match b as char {
             '~' => parse_jizz(p, n+1),
-            _   => { p.state.cmds.push(PutOut(n)); parse_back_up(p); }
+            _   => { p.cmds.push(PutOut(n)); parse_back_up(p); }
         }
     }
 }
@@ -166,8 +158,8 @@ fn parse_cglans(p : &mut ParseInfo) {
                     None => fail!("unbalanced chopticock! program is invalid"),
                     Some(t) => t
                 };
-                let ppos = p.state.cmds.len();
-                *(p.state.cmds.get_mut(lstck)) = JumpFwd(ppos);
+                let ppos = p.cmds.len();
+                *(p.cmds.get_mut(lstck)) = JumpFwd(ppos);
                 add_cmd(p, JumpBack(lstck), 1);
             }
             _   => parse_cglans(p)
@@ -190,37 +182,40 @@ fn main() {
         Err(e) => fail!("Could not open input file {}: {}",args.get(1),e)
     };
 
-    let mut pInfo = ParseInfo { f : infile, at : 0, lcStack : vec!(), state : box ProgramState { dPtr : 0, cPtr : 0, array : [0, ..65536], cmds : vec!() } };
+    let mut pInfo = ParseInfo { f : infile, at : 0, lcStack : vec!(), cmds : vec!() };
 
     parse_infile(&mut pInfo);
-
-    let mut pState = pInfo.state;
-    pState.cmds.push(Halt);
 
     if pInfo.lcStack.len() > 0 {
         fail!("unbalanced chopticock! program is invalid");
     }
 
+    pInfo.cmds.push(Halt);
+    let cmds = pInfo.cmds.as_slice();
+
+    let mut dPtr : u16 = 0;
+    let mut cPtr : uint = 0;
+    let mut array : [u8, ..65536] = [0, ..65536];
     let mut sIn = stdio::stdin_raw();
     let mut sOut = stdio::stdout();
+
     loop {
-        let s = pState.cmds.get(pState.cPtr);
-        match s {
+        match &cmds[cPtr] {
             &Halt => break,
-            &DataInc(d) => pState.array[pState.dPtr as uint] += d,
-            &DataDec(d) => pState.array[pState.dPtr as uint] -= d,
-            &PtrInc(p)  => pState.dPtr += p,
-            &PtrDec(p)  => pState.dPtr -= p,
-            &TakeIn(n)  => pState.array[pState.dPtr as uint] =
+            &DataInc(d) => array[dPtr as uint] += d,
+            &DataDec(d) => array[dPtr as uint] -= d,
+            &PtrInc(p)  => dPtr += p,
+            &PtrDec(p)  => dPtr -= p,
+            &TakeIn(n)  => array[dPtr as uint] =
                             match sIn.read_exact(n) {
                                 Ok(v) => *v.get(n-1) as u8,
                                 Err(_)=> 0
                             },
-            &PutOut(n)  => sOut.write_str( String::from_char(n, pState.array[pState.dPtr as uint] as char).as_slice() ).unwrap_or(()),
-            &JumpFwd(n) => if pState.array[pState.dPtr as uint] == 0 { pState.cPtr = n },
-            &JumpBack(n)=> if pState.array[pState.dPtr as uint] != 0 { pState.cPtr = n }
+            &PutOut(n)  => sOut.write_str( String::from_char(n, array[dPtr as uint] as char).as_slice() ).unwrap_or(()),
+            &JumpFwd(n) => if array[dPtr as uint] == 0 { cPtr = n },
+            &JumpBack(n)=> if array[dPtr as uint] != 0 { cPtr = n }
         };
 
-        pState.cPtr += 1;
+        cPtr += 1;
     }
 }
