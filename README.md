@@ -12,7 +12,7 @@ The cockfuck distribution consists of this README, three interpreter implementat
 6. `Makefile`: Makefile for building and benchmarking the Rust and C++ interpreters.
 7. `collatz.cf`: A program that computes the number of steps to reach 0 or 1 following the [Collatz sequence](http://en.wikipedia.org/wiki/Collatz_conjecture). Original implementation in Brainfuck by [Daniel B. Cristofani](http://www.hevanet.com/cristofd/brainfuck/collatz.b).
 
-The interpreter reads cockfuck source from a file and executes it, taking input either from stdin or as specified by redirection. The translators read brainfuck or cockfuck source from a file, as appropriate, and print the translation to stdout; all tests to date indicate that the interconversion is (ahem) idempotent.
+The interpreter reads cockfuck source from a file and executes it, taking input from stdin. The translators read brainfuck or cockfuck source from a file or stdin and print the translation to stdout; all tests to date indicate that the interconversion is (ahem) idempotent.
 
 ## A Summary of cockfuck Syntax ##
 
