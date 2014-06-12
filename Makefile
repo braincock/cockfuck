@@ -30,7 +30,7 @@ test: cfuck crust cInput
 	@echo Running Collatz test.
 	@echo
 	@echo \*\*\* C++ INTERPRETER \*\*\*
-	@$(PERF) stat ./cfuck collatz.cf < cInput
+	@$(PERF) ./cfuck collatz.cf < cInput
 	@echo \*\*\* RUST INTERPRETER \*\*\*
 	@$(PERF) ./crust collatz.cf < cInput
 
