@@ -21,7 +21,7 @@ CXX := clang++
 RUSTFLAGS := -O
 RUSTC := rustc
 
-PERF := perf
+PERF := $(shell { ( command -v perf && echo stat ) || echo time ; })
 
 all: cfuck crust
 
@@ -32,7 +32,7 @@ test: cfuck crust cInput
 	@echo \*\*\* C++ INTERPRETER \*\*\*
 	@$(PERF) stat ./cfuck collatz.cf < cInput
 	@echo \*\*\* RUST INTERPRETER \*\*\*
-	@$(PERF) stat ./crust collatz.cf < cInput
+	@$(PERF) ./crust collatz.cf < cInput
 
 cfuck: cockfuck.cpp cockfuck.hpp
 	@echo "[$<] compiling."
